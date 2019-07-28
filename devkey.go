@@ -112,11 +112,25 @@ func checkDevFile(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func isConnected(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Endpoint hit- Is Connected")
+
+	var s string
+
+	s = "true"
+
+	fmt.Println(s)
+
+	json.NewEncoder(w).Encode(s)
+
+}
+
 func handleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/FileCheck", checkDevFile).Methods("GET")
 	myRouter.HandleFunc("/", createDevFile).Methods("POST")
 	myRouter.HandleFunc("/", retrieveDevFile).Methods("GET")
+	myRouter.HandleFunc("/", isConnected).Methods("GET")
 	log.Fatal(http.ListenAndServe(port, myRouter))
 }
 
