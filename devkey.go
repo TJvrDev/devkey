@@ -130,7 +130,7 @@ func handleRequests() {
 	myRouter.HandleFunc("/FileCheck", checkDevFile).Methods("GET")
 	myRouter.HandleFunc("/", createDevFile).Methods("POST")
 	myRouter.HandleFunc("/", retrieveDevFile).Methods("GET")
-	myRouter.HandleFunc("/", isConnected).Methods("GET")
+	myRouter.HandleFunc("/Connection", isConnected).Methods("GET")
 	log.Fatal(http.ListenAndServe(port, myRouter))
 }
 
