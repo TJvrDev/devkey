@@ -37,13 +37,9 @@ func createDevFile(w http.ResponseWriter, r *http.Request) {
 
 		s := string(body)
 
-		log.Println(s)
-
 		data := devInfo{}
 
 		json.Unmarshal([]byte(s), &data)
-
-		log.Println(data.DevKey)
 
 		// Saving To File
 		f, err := os.Create(fileName)
@@ -85,8 +81,6 @@ func retrieveDevFile(w http.ResponseWriter, r *http.Request) {
 
 		s := string(data)
 
-		fmt.Print(s)
-
 		json.NewEncoder(w).Encode(s)
 	} else {
 		fmt.Println("File does not exist")
@@ -106,8 +100,6 @@ func checkDevFile(w http.ResponseWriter, r *http.Request) {
 		s = "false"
 	}
 
-	fmt.Println(s)
-
 	json.NewEncoder(w).Encode(s)
 
 }
@@ -118,8 +110,6 @@ func isConnected(w http.ResponseWriter, r *http.Request) {
 	var s string
 
 	s = "true"
-
-	fmt.Println(s)
 
 	json.NewEncoder(w).Encode(s)
 
